@@ -37,16 +37,15 @@ kind: Service
 metadata:
   name: static-example-service
   annotations:
-    external-dns.alpha.kubernetes.io/hostname: "doctl-action.do-api.dev"
-    service.beta.kubernetes.io/do-loadbalancer-name: "doctl-action.do-api.dev"
-    service.beta.kubernetes.io/do-loadbalancer-certificate-id: "913a4f25-dd44-47e0-8588-eb09f095c7e2"
-    service.beta.kubernetes.io/do-loadbalancer-redirect-http-to-https: "true"
+    kubernetes.digitalocean.com/load-balancer-id: "748c8d39-f48b-48f1-88d2-4a01d0c25ea9"
+    service.beta.kubernetes.io/do-loadbalancer-size-unit: "2"
+    service.beta.kubernetes.io/do-loadbalancer-disable-lets-encrypt-dns-records: "false"
 spec:
   type: LoadBalancer
+  selector:
+    app: static-example
   ports:
     - name: https
       protocol: TCP
       port: 443
       targetPort: 5000
-  selector:
-    app: static-example
